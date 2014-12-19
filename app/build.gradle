@@ -17,7 +17,7 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
@@ -39,7 +39,9 @@ task jacocoTestReport(type: JacocoReport, dependsOn: "testDebug") {
     reports {
         xml.enabled = true
         html.enabled = true
+        html.destination = "${buildDir}/jacocoHtml"
     }
+
     classDirectories = fileTree(
             dir: './build/intermediates/classes/debug',
             excludes: ['**/R*.class',

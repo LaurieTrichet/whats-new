@@ -54,9 +54,12 @@ public class Feed {
          * @param feedTitle
          * @param feedLink
          * @param feedDescription
+         * @exception java.lang.NullPointerException if at least one of the parameter is null
          */
-        public Builder (@NonNull String feedTitle, @NonNull String feedLink, @NonNull String feedDescription){
-
+        public Builder (@NonNull String feedTitle, @NonNull String feedLink, @NonNull String feedDescription)
+                throws NullPointerException{
+            if (feedTitle == null || feedLink ==null || feedDescription == null)
+                throw new NullPointerException("Title, link and description are mandatory for a feed object");
             this.title = feedTitle;
             this.link = feedLink;
             this.description = feedDescription;

@@ -16,9 +16,9 @@ public class FileUtility {
         String line = null;
 
         BufferedReader bufferedReader = null;
-        bufferedReader = new BufferedReader(new InputStreamReader(file));
 
         try {
+            bufferedReader = new BufferedReader(new InputStreamReader(file, "UTF-8"));
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line);
             }

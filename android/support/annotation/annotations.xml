@@ -1,0 +1,5 @@
+<root>
+    <item name='android.support.annotation.NonNull'>
+        <annotation name='org.jetbrains.annotations.NotNull' />
+    </item>
+</root>
