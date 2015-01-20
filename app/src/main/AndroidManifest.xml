@@ -30,4 +30,10 @@
         </activity>
     </application>
 
+    <provider android:name="WNContentProvider"
+        android:authorities="com.laurietrichet.whatsnew.contentprovider"
+        android:exported="false">
+        <grant-uri-permission android:pathPattern=".*" />
+    </provider>
+
 </manifest>

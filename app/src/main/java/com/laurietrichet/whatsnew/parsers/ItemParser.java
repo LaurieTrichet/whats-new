@@ -45,7 +45,8 @@ class ItemParser {
             }
         }
 
-        Item.Builder itemBuilder = new Item.Builder(itemTitle,itemLink,itemDescription);
+        Item.Builder itemBuilder = new Item.Builder(itemTitle,itemDescription);
+        itemBuilder.link(itemLink);
         return itemBuilder.build();
     }
 }

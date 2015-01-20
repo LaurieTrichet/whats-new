@@ -23,14 +23,24 @@ public class Item {
         private String link;
         private String description;
 
-        public Builder (String itemTitle, String itemLink, String itemDescription){
+        /**
+         * At least one of title or description must be present.
+         * @param itemTitle
+         * @param itemDescription
+         */
+        public Builder (String itemTitle, String itemDescription){
+            if (itemTitle == null && itemDescription == null)
+                throw new IllegalArgumentException("At least one of title or description must be present.");
             this.title = itemTitle;
-            this.link = itemLink;
             this.description = itemDescription;
         }
 
         public Item build (){
             return new Item(this);
+        }
+
+        public void link (String itemLink){
+            this.link = itemLink;
         }
     }
 
