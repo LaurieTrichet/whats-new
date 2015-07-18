@@ -8,6 +8,7 @@ import android.content.Context;
 class FeedDataAccessor implements IDataAccessor{
 
     /**package*/ FeedDataAccessor (Context context) {
+
     }
 
     @Override
