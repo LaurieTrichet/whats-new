@@ -1,4 +1,4 @@
-package com.laurietrichet.whatsnew.activities;
+package com.laurietrichet.whatsnew.ui.activities;
 
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
-import com.laurietrichet.whatsnew.fragments.NavigationDrawerFragment;
+import com.laurietrichet.whatsnew.ui.fragments.NavigationDrawerFragment;
 import com.laurietrichet.whatsnew.R;
 
 

@@ -1,17 +1,10 @@
-package com.laurietrichet.whatsnew.database;
+package com.laurietrichet.whatsnew.core.database;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.provider.BaseColumns;
 import android.util.Log;
-
-import static com.laurietrichet.whatsnew.database.WNContract.COLUMN_NAME_DESCRIPTION;
-import static com.laurietrichet.whatsnew.database.WNContract.COLUMN_NAME_LINK;
-import static com.laurietrichet.whatsnew.database.WNContract.COLUMN_NAME_TITLE;
-import static com.laurietrichet.whatsnew.database.WNContract.COMMA_SEP;
-import static com.laurietrichet.whatsnew.database.WNContract.INTEGER_TYPE;
-import static com.laurietrichet.whatsnew.database.WNContract.TEXT_TYPE;
 
 /**
  * Describe Item object in database.
@@ -26,14 +19,14 @@ public final class ItemTable implements BaseColumns{
 
     static final String SQL_CREATE_ITEM =
             "CREATE TABLE " + TABLE_NAME + " (" +
-                    _ID + INTEGER_TYPE+" PRIMARY KEY" + COMMA_SEP +
-                    COLUMN_NAME_FEED_ID_FK + INTEGER_TYPE + COMMA_SEP +
-                    GUID + TEXT_TYPE + COMMA_SEP +
-                    COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
-                    COLUMN_NAME_LINK + TEXT_TYPE + COMMA_SEP +
-                    COLUMN_NAME_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
+                    _ID + WNContract.INTEGER_TYPE+" PRIMARY KEY" + WNContract.COMMA_SEP +
+                    COLUMN_NAME_FEED_ID_FK + WNContract.INTEGER_TYPE + WNContract.COMMA_SEP +
+                    GUID + WNContract.TEXT_TYPE + WNContract.COMMA_SEP +
+                    WNContract.COLUMN_NAME_TITLE + WNContract.TEXT_TYPE + WNContract.COMMA_SEP +
+                    WNContract.COLUMN_NAME_LINK + WNContract.TEXT_TYPE + WNContract.COMMA_SEP +
+                    WNContract.COLUMN_NAME_DESCRIPTION + WNContract.TEXT_TYPE + WNContract.COMMA_SEP +
                     "FOREIGN KEY ("+ COLUMN_NAME_FEED_ID_FK +") REFERENCES "+
-                    FeedTable.TABLE_NAME+"("+ FeedTable._ID+")"+
+                    FeedTable.TABLE_NAME+"("+ _ID +")"+
                     " );";
 
     static final String SQL_DELETE_ITEM =
@@ -44,12 +37,12 @@ public final class ItemTable implements BaseColumns{
      */
     static final String [] READ_FEED_PROJECTION = {
             _ID,
-            COLUMN_NAME_TITLE,
-            COLUMN_NAME_LINK,
-            COLUMN_NAME_DESCRIPTION
+            WNContract.COLUMN_NAME_TITLE,
+            WNContract.COLUMN_NAME_LINK,
+            WNContract.COLUMN_NAME_DESCRIPTION
     };
 
-    static final String DEFAULT_SORT_ORDER = COLUMN_NAME_TITLE +" ASC";
+    static final String DEFAULT_SORT_ORDER = WNContract.COLUMN_NAME_TITLE +" ASC";
 
     static final String MIME_TYPE_DIR = "vnd.android.cursor.dir/vnd.com.laurietrichet.provider.Item";
     static final String MIME_TYPE_ITEM = "vnd.android.cursor.item/vnd.com.laurietrichet.provider.Item";
@@ -74,15 +67,15 @@ public final class ItemTable implements BaseColumns{
      * @return true if the argument is correct.
      */
     static boolean isValidForInsert (ContentValues values) {
-        if (values.containsKey(COLUMN_NAME_TITLE) == false) {
+        if (values.containsKey(WNContract.COLUMN_NAME_TITLE) == false) {
             return false;
         }
         // If the values map doesn't contain note text, sets the value to an empty string.
-        if (values.containsKey(COLUMN_NAME_LINK) == false) {
+        if (values.containsKey(WNContract.COLUMN_NAME_LINK) == false) {
             return false;
         }
 
-        if (values.containsKey(COLUMN_NAME_DESCRIPTION) == false) {
+        if (values.containsKey(WNContract.COLUMN_NAME_DESCRIPTION) == false) {
             return false;
         }
         return true;

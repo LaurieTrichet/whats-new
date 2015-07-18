@@ -1,4 +1,4 @@
-package com.laurietrichet.whatsnew.database;
+package com.laurietrichet.whatsnew.core.database;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,14 +6,6 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 import android.util.Log;
 
-import static com.laurietrichet.whatsnew.database.WNContract.AUTOINCREMENT;
-import static com.laurietrichet.whatsnew.database.WNContract.COLUMN_NAME_DESCRIPTION;
-import static com.laurietrichet.whatsnew.database.WNContract.COLUMN_NAME_LINK;
-import static com.laurietrichet.whatsnew.database.WNContract.COLUMN_NAME_TITLE;
-import static com.laurietrichet.whatsnew.database.WNContract.COMMA_SEP;
-import static com.laurietrichet.whatsnew.database.WNContract.INTEGER_TYPE;
-import static com.laurietrichet.whatsnew.database.WNContract.NOT_NULL;
-import static com.laurietrichet.whatsnew.database.WNContract.TEXT_TYPE;
 /**
  * Describe the feed object in database.
  * This class must not be instanced, all the fields are static.
@@ -26,10 +18,10 @@ public final class FeedTable implements BaseColumns{
 
     static final String SQL_CREATE_FEED =
             "CREATE TABLE " + TABLE_NAME + " (" +
-                    _ID + INTEGER_TYPE + " PRIMARY KEY" + AUTOINCREMENT + COMMA_SEP+
-                    COLUMN_NAME_TITLE + TEXT_TYPE + NOT_NULL + COMMA_SEP +
-                    COLUMN_NAME_LINK + TEXT_TYPE + NOT_NULL + COMMA_SEP +
-                    COLUMN_NAME_DESCRIPTION + TEXT_TYPE + NOT_NULL +
+                    _ID + WNContract.INTEGER_TYPE + " PRIMARY KEY" + WNContract.AUTOINCREMENT + WNContract.COMMA_SEP+
+                    WNContract.COLUMN_NAME_TITLE + WNContract.TEXT_TYPE + WNContract.NOT_NULL + WNContract.COMMA_SEP +
+                    WNContract.COLUMN_NAME_LINK + WNContract.TEXT_TYPE + WNContract.NOT_NULL + WNContract.COMMA_SEP +
+                    WNContract.COLUMN_NAME_DESCRIPTION + WNContract.TEXT_TYPE + WNContract.NOT_NULL +
                     " );";
 
     static final String SQL_DELETE_FEED =
@@ -40,14 +32,14 @@ public final class FeedTable implements BaseColumns{
      */
     static final String [] READ_FEED_PROJECTION = {
             _ID,
-            COLUMN_NAME_TITLE,
-            COLUMN_NAME_LINK,
-            COLUMN_NAME_DESCRIPTION
+            WNContract.COLUMN_NAME_TITLE,
+            WNContract.COLUMN_NAME_LINK,
+            WNContract.COLUMN_NAME_DESCRIPTION
     };
 
-    static final String DEFAULT_SORT_ORDER = COLUMN_NAME_TITLE +" ASC";
+    static final String DEFAULT_SORT_ORDER = WNContract.COLUMN_NAME_TITLE +" ASC";
 
-    static final String SEARCH_LINK_SELECTION = COLUMN_NAME_LINK + " = ?";
+    static final String SEARCH_LINK_SELECTION = WNContract.COLUMN_NAME_LINK + " = ?";
 
     static final String MIME_TYPE_DIR = "vnd.android.cursor.dir/vnd.com.laurietrichet.provider.Feed";
     static final String MIME_TYPE_ITEM = "vnd.android.cursor.item/vnd.com.laurietrichet.provider.Feed";
@@ -80,15 +72,15 @@ public final class FeedTable implements BaseColumns{
      * @return true if the argument is correct.
      */
     static boolean isValidForInsert (ContentValues values) {
-        if (values.containsKey(COLUMN_NAME_TITLE) == false) {
+        if (values.containsKey(WNContract.COLUMN_NAME_TITLE) == false) {
             return false;
         }
         // If the values map doesn't contain note text, sets the value to an empty string.
-        if (values.containsKey(COLUMN_NAME_LINK) == false) {
+        if (values.containsKey(WNContract.COLUMN_NAME_LINK) == false) {
             return false;
         }
 
-        if (values.containsKey(COLUMN_NAME_DESCRIPTION) == false) {
+        if (values.containsKey(WNContract.COLUMN_NAME_DESCRIPTION) == false) {
             return false;
         }
         return true;

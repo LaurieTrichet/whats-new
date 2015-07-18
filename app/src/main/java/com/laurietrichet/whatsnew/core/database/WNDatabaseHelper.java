@@ -1,4 +1,4 @@
-package com.laurietrichet.whatsnew.database;
+package com.laurietrichet.whatsnew.core.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

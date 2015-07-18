@@ -1,4 +1,4 @@
-package com.laurietrichet.whatsnew.database;
+package com.laurietrichet.whatsnew.core.database;
 
 import android.net.Uri;
 

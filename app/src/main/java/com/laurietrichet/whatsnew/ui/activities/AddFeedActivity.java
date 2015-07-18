@@ -1,4 +1,4 @@
-package com.laurietrichet.whatsnew.activities;
+package com.laurietrichet.whatsnew.ui.activities;
 
 import android.support.v7.app.ActionBarActivity;
 

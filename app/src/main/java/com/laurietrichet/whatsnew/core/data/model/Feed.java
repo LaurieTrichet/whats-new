@@ -1,4 +1,4 @@
-package com.laurietrichet.whatsnew.model;
+package com.laurietrichet.whatsnew.core.data.model;
 
 import android.support.annotation.NonNull;
 

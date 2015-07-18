@@ -1,10 +1,14 @@
-package com.laurietrichet.whatsnew.database;
+package com.laurietrichet.whatsnew.core.database;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.test.ProviderTestCase2;
 import android.test.mock.MockContentResolver;
+
+import com.laurietrichet.whatsnew.core.database.FeedTable;
+import com.laurietrichet.whatsnew.core.database.WNContentProvider;
+import com.laurietrichet.whatsnew.core.database.WNContract;
 
 import junit.framework.Assert;
 

@@ -1,4 +1,4 @@
-package com.laurietrichet.whatsnew.data;
+package com.laurietrichet.whatsnew.core.data;
 
 import android.content.Context;
 
@@ -12,12 +12,12 @@ public class ItemDataAccessor implements IDataAccessor{
     }
 
     @Override
-    public void getAll(DataAccessorListener listener) {
+    public void getAll() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void get(String id, DataAccessorListener listener) {
+    public void get(String id) {
         throw new UnsupportedOperationException();
     }
 }

@@ -1,4 +1,4 @@
-package com.laurietrichet.whatsnew.database;
+package com.laurietrichet.whatsnew.core.database;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -14,8 +14,6 @@ import android.text.TextUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.laurietrichet.whatsnew.database.WNContract.AUTHORITY;
 
 /**
  * Content provider provides an API to interact with database.
@@ -42,17 +40,17 @@ public class WNContentProvider extends ContentProvider {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
         // Add a pattern that routes URIs terminated with "feeds" to a FEEDS operation
-        uriMatcher.addURI(AUTHORITY, STR_URI_FEED, FEEDS);
+        uriMatcher.addURI(WNContract.AUTHORITY, STR_URI_FEED, FEEDS);
 
         // Add a pattern that routes URIs terminated with "feeds" plus an integer
         // to a note ID operation
-        uriMatcher.addURI(AUTHORITY, STR_URI_FEED_ID, FEED_ID);
+        uriMatcher.addURI(WNContract.AUTHORITY, STR_URI_FEED_ID, FEED_ID);
 
         // Add a pattern that routes URIs terminated with "feeds/#/items" to a ITEMS operation
-        uriMatcher.addURI(AUTHORITY, STR_URI_FEED_ITEM, FEED_ITEMS);
+        uriMatcher.addURI(WNContract.AUTHORITY, STR_URI_FEED_ITEM, FEED_ITEMS);
 
         // Add a pattern that routes URIs terminated with "feeds/#/items/" plus an integer
-        uriMatcher.addURI(AUTHORITY, STR_URI_FEED_ITEM_ID, FEED_ITEMS_ID);
+        uriMatcher.addURI(WNContract.AUTHORITY, STR_URI_FEED_ITEM_ID, FEED_ITEMS_ID);
 
         // Add projection columns for a request on the feed table
         feedProjectionMap.put(FeedTable._ID, FeedTable._ID);

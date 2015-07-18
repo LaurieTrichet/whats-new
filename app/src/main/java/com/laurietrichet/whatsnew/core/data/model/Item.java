@@ -1,4 +1,4 @@
-package com.laurietrichet.whatsnew.model;
+package com.laurietrichet.whatsnew.core.data.model;
 
 /**
  * Created by laurie on 22/11/14.
