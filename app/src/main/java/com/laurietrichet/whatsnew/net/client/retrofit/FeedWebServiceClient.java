@@ -10,5 +10,5 @@ import retrofit.http.GET;
 public interface FeedWebServiceClient extends IWebServiceClient{
 
     @GET("")
-    void get ();
+    void get (RetrofitCallback callback);
 }

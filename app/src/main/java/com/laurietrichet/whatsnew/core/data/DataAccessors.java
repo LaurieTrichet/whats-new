@@ -30,7 +30,7 @@ public final class DataAccessors {
         if (! mAccessorList.containsKey(key)){
             if (key == dataAccessorsKey.FEED_DATA_ACCESSOR){
                 mAccessorList.put(dataAccessorsKey.FEED_DATA_ACCESSOR,
-                        new FeedDataAccessor(context));
+                        new FeedAccessor(context));
             } else {
                 mAccessorList.put(dataAccessorsKey.ITEM_DATA_ACCESSOR,
                         new ItemDataAccessor(context));
