@@ -5,5 +5,5 @@ package com.laurietrichet.whatsnew.net.client;
  */
 public interface IWebServiceClient {
 
-    void get ();
+    void get (String resourcePath);
 }

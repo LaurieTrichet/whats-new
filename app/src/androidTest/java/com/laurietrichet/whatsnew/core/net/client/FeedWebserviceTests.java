@@ -4,6 +4,7 @@ import android.test.InstrumentationTestCase;
 
 /**
  * Created by laurie on 23/07/15.
+ * Class to test the request though network. Check cache strategy.
  */
 public class FeedWebserviceTests extends InstrumentationTestCase{
 
@@ -18,6 +19,6 @@ public class FeedWebserviceTests extends InstrumentationTestCase{
     }
 
     public void testGetFeed (){
-
+        //TODO test cache strategy
     }
 }

@@ -1,16 +1,21 @@
 package com.laurietrichet.whatsnew.core.database;
 
 import android.content.ContentValues;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.test.ProviderTestCase2;
 import android.test.mock.MockContentResolver;
 
+import com.laurietrichet.whatsnew.FileUtility;
 import com.laurietrichet.whatsnew.core.database.FeedTable;
 import com.laurietrichet.whatsnew.core.database.WNContentProvider;
 import com.laurietrichet.whatsnew.core.database.WNContract;
 
 import junit.framework.Assert;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class WNContentProviderTest extends ProviderTestCase2<WNContentProvider> {
 
@@ -21,7 +26,7 @@ public class WNContentProviderTest extends ProviderTestCase2<WNContentProvider> 
     private static String feedLink = "http://www.bom.gov.au/fwo/IDZ00059.warnings_vic.xml";
     private static String feedDescription = "Current weather warnings for Victoria, Australia including strong wind, gale, storm force and hurricane force wind warnings; tsunami; damaging waves; abnormally high tides; tropical cyclones; severe thunderstorms; severe weather; fire weather; flood; frost; driving; bushwalking; sheep graziers and other agricultural warnings.";
 
-
+    private String mockResponse;
     /**
      * Constructor.
      *
@@ -41,7 +46,7 @@ public class WNContentProviderTest extends ProviderTestCase2<WNContentProvider> 
         super.setUp();
         mockContentResolver = getMockContentResolver();
 
-        createRows ();
+        createRows();
     }
 
     private void createRows (){
@@ -57,10 +62,21 @@ public class WNContentProviderTest extends ProviderTestCase2<WNContentProvider> 
         mockContentResolver.insert(FeedTable.CONTENT_URI, contentValues);
     }
 
-    public void testOnCreate() throws Exception {
-        Assert.fail();
+    private void readTestInput () throws IOException {
+        AssetManager assetManager = getContext().getAssets();
+        InputStream inputStream;
+        inputStream = assetManager.open("rssNewsSample");
+        mockResponse = FileUtility.file2String(inputStream);
     }
 
+//    public void testOnCreate() throws Exception {
+//        Assert.fail();
+//    }
+
+    /**
+     * Test querying the database.
+     * @throws Exception
+     */
     public void testQuery() throws Exception {
 
         Uri uri = FeedTable.CONTENT_URI;
@@ -76,13 +92,17 @@ public class WNContentProviderTest extends ProviderTestCase2<WNContentProvider> 
                 null);
 
         Assert.assertNotNull(cursor);
-        Assert.assertEquals(1,cursor.getCount());
+        Assert.assertEquals(1, cursor.getCount());
     }
 
-    public void testGetType() throws Exception {
-        Assert.fail();
-    }
+//    public void testGetType() throws Exception {
+//        Assert.fail();
+//    }
 
+    /**
+     * Test insert a row
+     * @throws Exception
+     */
     public void testInsert() throws Exception {
 
         String feedTitle = "Liftoff News";
@@ -97,9 +117,12 @@ public class WNContentProviderTest extends ProviderTestCase2<WNContentProvider> 
         Uri uri = mockContentResolver.insert(FeedTable.CONTENT_URI, contentValues);
 
         Assert.assertNotNull(uri);
-
     }
 
+    /**
+     * Test deleting a row.
+     * @throws Exception
+     */
     public void testDelete() throws Exception {
         insertTestFeedRow();
 
@@ -126,6 +149,10 @@ public class WNContentProviderTest extends ProviderTestCase2<WNContentProvider> 
         Assert.assertEquals(0, cursor.getCount());
     }
 
+    /**
+     * Test updating a row in database.
+     * @throws Exception
+     */
     public void testUpdate() throws Exception {
         insertTestFeedRow ();
         String newFeedTitle = "New title for testing.";

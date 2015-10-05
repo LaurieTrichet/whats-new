@@ -13,7 +13,7 @@ public class FileUtility {
     public static String file2String(InputStream file){
 
         StringBuilder stringBuilder = new StringBuilder();
-        String line = null;
+        String line;
 
         BufferedReader bufferedReader = null;
 

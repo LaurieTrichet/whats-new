@@ -5,4 +5,13 @@ package com.laurietrichet.whatsnew.core.bus;
  * Represent an error due to network fault.
  */
 public class NetworkError {
+    private final String message;
+
+    public NetworkError(String localizedMessage) {
+        message = localizedMessage;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

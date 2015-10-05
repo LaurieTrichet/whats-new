@@ -1,6 +1,12 @@
 package com.laurietrichet.whatsnew.core.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
+
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
 import java.util.List;
 
@@ -10,16 +16,21 @@ import java.util.List;
  * About RSS specification:
  * http://www.rssboard.org/rss-specification
  */
-public class Feed {
+@Element(name="channel")
+public class Feed implements Parcelable {
 
+    @Element
     private String title;
+    @Element
     private String link;
+    @Element
     private String description;
 
     /*optional*/
     private String imageUrl;
     private int ttl;
 
+    @ElementList
     private List<Item> itemList;
 
     private Feed () throws UnsupportedOperationException{
@@ -33,6 +44,42 @@ public class Feed {
         this.imageUrl = builder.imageUrl;
         this.ttl =  builder.ttl;
         this.itemList = builder.itemList;
+    }
+
+    protected Feed(Parcel in) {
+        title = in.readString();
+        link = in.readString();
+        description = in.readString();
+        imageUrl = in.readString();
+        ttl = in.readInt();
+        itemList = in.createTypedArrayList(Item.CREATOR);
+    }
+
+    public static final Creator<Feed> CREATOR = new Creator<Feed>() {
+        @Override
+        public Feed createFromParcel(Parcel in) {
+            return new Feed(in);
+        }
+
+        @Override
+        public Feed[] newArray(int size) {
+            return new Feed[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(link);
+        dest.writeString(description);
+        dest.writeString(imageUrl);
+        dest.writeInt(ttl);
+        dest.writeTypedList(itemList);
     }
 
     /**

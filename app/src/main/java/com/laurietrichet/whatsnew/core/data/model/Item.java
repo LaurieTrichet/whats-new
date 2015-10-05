@@ -1,12 +1,18 @@
 package com.laurietrichet.whatsnew.core.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import org.simpleframework.xml.Element;
+
 /**
  * Created by laurie on 22/11/14.
  * Represent a RSS item object. To construct a Item object use the Builder class.
  * About RSS specification:
  * http://www.rssboard.org/rss-specification
  */
-public class Item {
+@Element(name = "item")
+public class Item implements Parcelable{
 
     private String title;
     private String link;
@@ -16,6 +22,36 @@ public class Item {
         this.title = builder.title;
         this.link = builder.link;
         this.description = builder.description;
+    }
+
+    protected Item(Parcel in) {
+        title = in.readString();
+        link = in.readString();
+        description = in.readString();
+    }
+
+    public static final Creator<Item> CREATOR = new Creator<Item>() {
+        @Override
+        public Item createFromParcel(Parcel in) {
+            return new Item(in);
+        }
+
+        @Override
+        public Item[] newArray(int size) {
+            return new Item[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(link);
+        dest.writeString(description);
     }
 
     public static class Builder {
