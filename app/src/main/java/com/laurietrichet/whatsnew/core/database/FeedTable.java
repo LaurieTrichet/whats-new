@@ -41,8 +41,8 @@ public final class FeedTable implements BaseColumns{
 
     static final String SEARCH_LINK_SELECTION = WNContract.COLUMN_NAME_LINK + " = ?";
 
-    static final String MIME_TYPE_DIR = "vnd.android.cursor.dir/vnd.com.laurietrichet.provider.Feed";
-    static final String MIME_TYPE_ITEM = "vnd.android.cursor.item/vnd.com.laurietrichet.provider.Feed";
+    static final String MIME_TYPE_DIR = "vnd.android.cursor.dir/vnd.com.laurietrichet.provider.Rss";
+    static final String MIME_TYPE_ITEM = "vnd.android.cursor.item/vnd.com.laurietrichet.provider.Rss";
 
     static void onCreate (SQLiteDatabase database) {
         database.execSQL(SQL_CREATE_FEED);

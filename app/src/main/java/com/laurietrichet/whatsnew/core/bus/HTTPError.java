@@ -6,22 +6,22 @@ package com.laurietrichet.whatsnew.core.bus;
  */
 public class HTTPError {
 
+    private final String message;
     private String requestUrl;
-    private String responseUrl;
     private int status;
 
     public static class Builder {
         private String requestUrl;
-        private String responseUrl;
         private int status;
+        private String message;
 
         public Builder setRequestUrl(String requestUrl) {
             this.requestUrl = requestUrl;
             return this;
         }
 
-        public Builder setResponseUrl(String responseUrl) {
-            this.responseUrl = responseUrl;
+        public Builder setMessage(String message) {
+            this.message = message;
             return this;
         }
 
@@ -33,16 +33,16 @@ public class HTTPError {
         public HTTPError build (){
             return new HTTPError(
                     this.requestUrl,
-                    this.responseUrl,
+                    this.message,
                     this.status);
         }
     }
 
-    private HTTPError(String requestUrl,
-              String responseUrl,
+    public HTTPError(String requestUrl,
+              String message,
               int status) {
         this.requestUrl = requestUrl;
-        this.responseUrl = responseUrl;
+        this.message = message;
         this.status = status;
     }
 }

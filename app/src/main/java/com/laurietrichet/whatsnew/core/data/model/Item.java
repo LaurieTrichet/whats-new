@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 /**
  * Created by laurie on 22/11/14.
@@ -11,12 +12,18 @@ import org.simpleframework.xml.Element;
  * About RSS specification:
  * http://www.rssboard.org/rss-specification
  */
-@Element(name = "item")
+@Root(strict = false)
 public class Item implements Parcelable{
 
+    @Element
     private String title;
+    @Element
     private String link;
+    @Element
     private String description;
+
+    public Item() {
+    }
 
     private Item (Builder builder){
         this.title = builder.title;
